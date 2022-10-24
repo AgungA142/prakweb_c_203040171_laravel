@@ -11,6 +11,7 @@
     <title>WPU BLOG | {{ $title }}</title>
   </head>
   <body>
+    
    @include('partials.navbar')
 
     <div class="container mt-4">
