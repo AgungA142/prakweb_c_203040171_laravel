@@ -1,9 +1,10 @@
 <?php
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Models\category;
 
 
 /*
@@ -50,7 +51,7 @@ Route::get('/categories', function() {
     ]);
 });
 //halaman category
-Route::get('categories/{category:slug}', function(Category $category) {
+Route::get('/categories/{category:slug}', function(Category $category) {
     return view('category', [
         'title' =>$category->name,
         'posts' =>$category->posts,
@@ -58,5 +59,16 @@ Route::get('categories/{category:slug}', function(Category $category) {
 
     ]);
 });
+
+
+//halaman User
+Route::get('/authors/{author:username}', function(User $author) {
+    return view('posts', [
+        'title' =>'User Post',
+        'posts' => $author-> posts
+
+    ]);
+});
+
 
 
