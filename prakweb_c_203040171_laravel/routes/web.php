@@ -52,10 +52,9 @@ Route::get('/categories', function() {
 });
 //halaman category
 Route::get('/categories/{category:slug}', function(Category $category) {
-    return view('category', [
-        'title' =>$category->name,
-        'posts' =>$category->posts,
-        'category' =>$category->name
+    return view('posts', [
+        'title' =>"Post By category :$category->name",
+        'posts' =>$category->posts->load(['category', 'author']),
 
     ]);
 });
@@ -64,8 +63,8 @@ Route::get('/categories/{category:slug}', function(Category $category) {
 //halaman User
 Route::get('/authors/{author:username}', function(User $author) {
     return view('posts', [
-        'title' =>'User Post',
-        'posts' => $author-> posts
+        'title' =>"Post By Author : $author->name",
+        'posts' => $author-> posts ->load(['category', 'author'])
 
     ]);
 });
