@@ -74,6 +74,7 @@ Route::get('dashboard', function() {
 })->middleware('auth');
 
 //dashboard post
+Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
 
