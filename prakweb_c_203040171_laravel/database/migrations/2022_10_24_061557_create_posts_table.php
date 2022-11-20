@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id');
             $table->String('title');
             $table->String('slug')->unique();
+            $table->string('image')->nullable();
             $table->text('excerpt');
             $table->text('body');
             $table->timestamp('published_at')->nullable();
@@ -36,4 +37,3 @@ class CreatePostsTable extends Migration
         Schema::dropIfExists('posts');
     }
 }
-
