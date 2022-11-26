@@ -9,7 +9,7 @@
 
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-//trix editor
+{{-- trix editor --}}
 <link rel="stylesheet" type="text/css" href="/css/trix.css">
 <script type="text/javascript" src="/js/trix.js"></script>
 
