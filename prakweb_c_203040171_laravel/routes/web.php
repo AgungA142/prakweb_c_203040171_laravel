@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
 
 
@@ -24,14 +25,14 @@ use App\Http\Controllers\DashboardPostController;
 Route::get('/', function () {
     return view('home', [
         "title" => "Home",
-        "active" =>"home"
+        "active" => "home"
     ]);
 });
 
 Route::get('/about', function () {
     return view('about', [
         "title" => "About",
-        "active"=>"about",
+        "active" => "about",
         "nama" => "Agung Alfatah",
         "email" => "Agung.alfatah43@gmail.com",
         "image" => "1.jpg"
@@ -44,14 +45,14 @@ Route::get('/blog', [PostController::class, 'index']);
 
 
 //halaman post single
-Route::get('posts/{post:slug}',[PostController::class, 'show']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 //halaman categories
-Route::get('/categories', function() {
+Route::get('/categories', function () {
     return view('categories', [
         'title' => 'Post categories',
-        'active' =>"categories",
-        'categories' =>Category::all()
+        'active' => "categories",
+        'categories' => Category::all()
 
 
     ]);
@@ -69,13 +70,17 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 //dashboard
 
-Route::get('dashboard', function() {
+Route::get('dashboard', function () {
     return view('dashboard.index');
 })->middleware('auth');
 
 //dashboard post
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
+//AdminCategoryController
+
+Route::resource('dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
 
 
@@ -99,6 +104,3 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 
 //     ]);
 // });
-
-
-
